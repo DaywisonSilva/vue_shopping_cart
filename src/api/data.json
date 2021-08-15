@@ -1,0 +1,20 @@
+[
+  {
+    "str_product": "samsung galaxy fold",
+    "str_description": "o mais incrível e novo celular dobrável da linha galaxy. Transforme seu smartphone em um tablet",
+    "str_url_image": "https://images.samsung.com/is/image/samsung/levant-galaxy-fold-f900-sm-f900fzkdmid-frontblack-200056226?$720_576_PNG$",
+    "nu_princing": 8400.0
+  },
+  {
+    "str_product": "samsung galaxy m62",
+    "str_description": "novo celular da linha M, focado em custo-benefício, leve mais por menos.",
+    "str_url_image": "https://t.ctcdn.com.br/YnzEctuljtbbSOxI5UitBnHJaus=/fit-in/400x400/filters:fill(transparent):watermark(wm/prd.png,-32p,center,1,none,15)/i452678.png",
+    "nu_princing": 8400.0
+  },
+  {
+    "str_product": "samsung galaxy Z Flip",
+    "str_description": "novo celular dobrável da linha galaxy",
+    "str_url_image": "https://tecnoblog.net/wp-content/uploads/2021/08/galaxy-z-flip-produto-700x700.png",
+    "nu_princing": 8400.0
+  }
+]
