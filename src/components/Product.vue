@@ -1,0 +1,57 @@
+<template>
+  <div class="product">
+    <div class="product__box">
+      <img :src="product.str_url_image" alt="" class="product__image" />
+      <div class="product__pricing">{{ product.nu_princing }}</div>
+    </div>
+    <div class="product__box product__box--description">
+      <app-title>{{ product.str_product }}</app-title>
+      <app-subtitle>{{ product.str_description }}</app-subtitle>
+    </div>
+    <div class="product__box">
+      <app-btn @click="$emit('onAddProduct', product)">Adicionar</app-btn>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+
+const productProps = Vue.extend({
+  props: {
+    product: Object,
+  },
+})
+
+export default class HelloWorld extends productProps {
+  message = 'olá'
+}
+</script>
+
+<style scoped>
+.product {
+  width: 100%;
+  min-height: 150px;
+  max-width: 600px;
+  margin: 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.product__image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.product__box {
+  margin: 10px 8px;
+}
+
+.product__box--description {
+  width: 100%;
+  min-width: 200px;
+  max-width: 320px;
+}
+</style>

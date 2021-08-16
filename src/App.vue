@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Produto
-      v-for="(produto, key) in produtos"
-      :produto="produto"
+    <Product
+      v-for="(product, key) in products"
+      :product="product"
       :key="key"
       @onAddProduct="addProduct"
     />
@@ -11,10 +11,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Produto from './components/Produto.vue'
+import Product from './components/Product.vue'
 import data from './api/data.json'
 
 type product = {
+  id_product: string
   str_product: string
   str_description: string
   str_url_image: string
@@ -23,16 +24,24 @@ type product = {
 
 @Component({
   components: {
-    Produto,
+    Product,
   },
 })
 export default class App extends Vue {
-  produtos = data
+  products = data
 
-  produtosEscolhidos = []
+  chosenProducts: Array<product> = []
 
   addProduct(product: product): void {
-    this.produtosEscolhidos.push(product);
+    if (this.chosenProducts.length === 0) {
+      this.chosenProducts.push(product)
+    } else {
+      let alreadyHasProduct = this.chosenProducts.some(chosenProduct => chosenProduct.id_product === product.id_product)
+      if(!alreadyHasProduct) this.chosenProducts.push(product)
+      else alert('Você já escolheu esse produto')
+    }
+
+    console.log(this.chosenProducts)
   }
 }
 </script>
