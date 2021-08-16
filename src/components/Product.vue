@@ -2,7 +2,7 @@
   <div class="product">
     <div class="product__box">
       <img :src="product.str_url_image" alt="" class="product__image" />
-      <div class="product__pricing">{{ product.nu_princing }}</div>
+      <div class="product__pricing">{{ getNumberFormat(product.nu_princing) }}</div>
     </div>
     <div class="product__box product__box--description">
       <app-title>{{ product.str_product }}</app-title>
@@ -25,6 +25,10 @@ const productProps = Vue.extend({
 
 export default class HelloWorld extends productProps {
   message = 'olá'
+
+  getNumberFormat(value:number): string {
+    return new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(value)
+  }
 }
 </script>
 
@@ -53,5 +57,13 @@ export default class HelloWorld extends productProps {
   width: 100%;
   min-width: 200px;
   max-width: 320px;
+}
+
+.product__pricing {
+  text-align: center;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: rgb(42, 165, 144);
+  color: white;
 }
 </style>
