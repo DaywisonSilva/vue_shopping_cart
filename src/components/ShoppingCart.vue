@@ -7,9 +7,14 @@
             <img :src="item.str_url_image" class="shoppingCart__image" />
             {{ item.str_product }}
           </td>
-          <td>{{ item.nu_princing }}</td>
-          <td><button>+</button>/ <button>-</button></td>
-          <td>excluir</td>
+          <td>{{ getFormatedCurrency(item.nu_princing * item.qtd_products) }}</td>
+          <td>
+            <button @click="$emit('onIncrementQtdProducts', item.id_product)">
+              +</button
+            ><span>{{ item.qtd_products }}</span
+            ><button @click="$emit('onDecrementQtdProducts', item.id_product)">-</button>
+          </td>
+          <td @click="$emit('onDelete', item.id_product)">excluir</td>
         </tr>
       </tbody>
       <thead>
@@ -21,7 +26,10 @@
       </thead>
       <tfoot>
         <tr>
-          Total: R$80,00
+          Total:
+          {{
+            totalPrice
+          }}
         </tr>
       </tfoot>
     </table>
@@ -37,7 +45,25 @@ const shoppingCartProps = Vue.extend({
   },
 })
 
-export default class ShoppingCart extends shoppingCartProps {}
+export default class ShoppingCart extends shoppingCartProps {
+  get totalPrice(): string {
+    let price = 0
+    if(this.items.length) {
+      price = this.items.reduce((acc: number, crr: any) => {
+        return acc + crr.nu_princing * crr.qtd_products
+      }, 0)
+    }
+
+    return this.getFormatedCurrency(price)
+  }
+
+  getFormatedCurrency(value: number): string {
+    return new Intl.NumberFormat('pt-br', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(value) 
+  }
+}
 </script>
 
 <style scoped>
