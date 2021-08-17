@@ -7,12 +7,16 @@
             <img :src="item.str_url_image" class="shoppingCart__image" />
             {{ item.str_product }}
           </td>
-          <td>{{ getFormatedCurrency(item.nu_princing * item.qtd_products) }}</td>
+          <td>
+            {{ getFormatedCurrency(item.nu_princing * item.qtd_products) }}
+          </td>
           <td>
             <button @click="$emit('onIncrementQtdProducts', item.id_product)">
               +</button
             ><span>{{ item.qtd_products }}</span
-            ><button @click="$emit('onDecrementQtdProducts', item.id_product)">-</button>
+            ><button @click="$emit('onDecrementQtdProducts', item.id_product)">
+              -
+            </button>
           </td>
           <td @click="$emit('onDelete', item.id_product)">excluir</td>
         </tr>
@@ -24,15 +28,14 @@
           <td>Qtd.</td>
         </tr>
       </thead>
-      <tfoot>
-        <tr>
-          Total:
-          {{
-            totalPrice
-          }}
-        </tr>
-      </tfoot>
     </table>
+
+    <div class="shoppingCart__totalPricing">
+      <div>Total</div>
+      <div>
+        {{ totalPrice }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,7 +51,7 @@ const shoppingCartProps = Vue.extend({
 export default class ShoppingCart extends shoppingCartProps {
   get totalPrice(): string {
     let price = 0
-    if(this.items.length) {
+    if (this.items.length) {
       price = this.items.reduce((acc: number, crr: any) => {
         return acc + crr.nu_princing * crr.qtd_products
       }, 0)
@@ -61,7 +64,7 @@ export default class ShoppingCart extends shoppingCartProps {
     return new Intl.NumberFormat('pt-br', {
       style: 'currency',
       currency: 'BRL',
-    }).format(value) 
+    }).format(value)
   }
 }
 </script>
@@ -80,11 +83,12 @@ export default class ShoppingCart extends shoppingCartProps {
   word-wrap: break-word;
   color: white;
   overflow-x: auto;
+  padding: 10px;
 }
 
 .shoppingCart__table {
-  width: 100%;
-  min-width: 600px;
+  width: calc(100% - 20px);
+  min-width: 580px;
   overflow-x: auto;
 }
 
@@ -97,5 +101,15 @@ export default class ShoppingCart extends shoppingCartProps {
 .shoppingCart__firstTableData {
   display: flex;
   align-items: center;
+}
+
+.shoppingCart__totalPricing {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.shoppingCart__totalPricing div:nth-child(2) {
+  text-align: end;
 }
 </style>
