@@ -1,9 +1,36 @@
 import styled from 'vue-styled-components'
 
-const CButton = styled.button`
-  width: 100px;
-  height: 40px;
-  background-color: #66dd66;
+
+const typeButton = {
+  type: String,
+  width: String,
+  height: String
+};
+
+const styleButton = (type: string) => {
+  switch (type) {
+    case 'primary':
+      return `
+              background-color: #44c76c;
+              color: #fff;
+          `
+    case 'secondary':
+      return `
+              background-color: #B4000B;
+              color: #FDFDFD;
+          `
+    default:
+      return `
+              background-color: #0057AA;
+              color: #FFFFFF;
+          `
+  }
+}
+
+
+const CButton = styled('button', typeButton)`
+  width:  ${props => props.width ? props.width : '100px'};
+  height: ${props => props.height ? props.height : '40px'};
   cursor: pointer;
   border: none;
   border-radius: 8px;
@@ -12,6 +39,8 @@ const CButton = styled.button`
   bottom: 0px;
   color: white;
   font-family: 'Poppins Regular';
+  ${(props: any):string => styleButton(props.type)}
+
 
   &:active {
     bottom: 2px;

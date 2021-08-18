@@ -1,4 +1,17 @@
 declare module '*.vue' {
   import Vue from 'vue'
-  export default Vue
+
+  // interface Data {
+  //   name: string
+  // }
+
+  interface Props {
+    items: Array
+  }
+
+  // interface Computed {
+  //   str: string
+  // }
+  
+  export default Vue.extend<Props, Methods, Computed, Data>()
 }

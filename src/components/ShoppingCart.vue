@@ -11,12 +11,20 @@
             {{ getFormatedCurrency(item.nu_princing * item.qtd_products) }}
           </td>
           <td>
-            <button @click="$emit('onIncrementQtdProducts', item.id_product)">
-              +</button
-            ><span>{{ item.qtd_products }}</span
-            ><button @click="$emit('onDecrementQtdProducts', item.id_product)">
+            <app-btn
+              @click="$emit('onIncrementQtdProducts', item.id_product)"
+              width="30px"
+              height="30px"
+            >
+              +</app-btn
+            ><span style="margin: 0 10px; display: inline-block;">{{ item.qtd_products }}</span
+            ><app-btn
+              @click="$emit('onDecrementQtdProducts', item.id_product)"
+              width="30px"
+              height="30px"
+            >
               -
-            </button>
+            </app-btn>
           </td>
           <td @click="$emit('onDelete', item.id_product)">excluir</td>
         </tr>
@@ -32,7 +40,7 @@
 
     <div class="shoppingCart__totalPricing">
       <div>Total</div>
-      <div>
+      <div id="totalPrice">
         {{ totalPrice }}
       </div>
     </div>

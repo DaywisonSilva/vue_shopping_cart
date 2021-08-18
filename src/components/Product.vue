@@ -11,7 +11,7 @@
       <app-subtitle>{{ product.str_description }}</app-subtitle>
     </div>
     <div class="product__box">
-      <app-btn @click="$emit('onAddProduct', product)">Adicionar</app-btn>
+      <app-btn @click="$emit('onAddProduct', product)" type="primary">Adicionar</app-btn>
     </div>
   </div>
 </template>
